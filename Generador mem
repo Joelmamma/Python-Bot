@@ -1,0 +1,21 @@
+import discord
+import random
+from discord.ext import commands
+import os
+import requests
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'iniciaste sesion con un bot que te aportará mucho {bot.user}')
+
+@bot.command()
+async def mem(ctx):
+    img_name= random.choice(os.listdir('crapeta memes'))
+    with open(f'crapeta memes/{img_name}', 'rb') as f:
+        # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+bot.run("MTE3MjMxNzgwNzk3MTY3NjIzMA.GMz2z3.igTQ3mutgoropJzkR1BWO_a3tbDDrStXp-Fpco")
